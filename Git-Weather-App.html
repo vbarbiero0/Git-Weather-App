@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Weather Application</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+  <link href="src/styles.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://kit.fontawesome.com/df7b7e2de4.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="weather-side">
+      <img class="back"
+        src="https://images.unsplash.com/photo-1496023328036-6792ef27a543?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
+        alt="cloudyBeach" />
+
+      <div class="weather-side-container" id="weather-side-container">
+        <div class="date-container" id="date-container">
+          <span class="date" id="date">
+            <h2 class="date-dayname" id="day-name">Tuesday</h2>
+            <div class="date-day" id="day">12 Sept 2020</div>
+          </span>
+
+          <h6 class="location">
+            <i class="fas fa-map-marker-alt" id="location-img">
+            </i>
+            <span class="cityName" id="city-name">
+              Montreal
+            </span> ,
+            <span class="countryCode" id="country-code">
+              CA
+            </span>
+          </h6>
+        </div>
+
+        
+        <div class="weather-container">
+          <div class="weather-icon" id="weather-icon">
+            <img src="http://openweathermap.org/img/wn/10d@2x.png" 
+            alt="clear" 
+            id="weather-icon" 
+            />
+          </div>
+          <div>
+
+            <h1 class="weather-temp">
+              <span id="current-temp">
+                14
+              </span>
+              <span class="alternate" id="alternate"><a href="#" id="celsius">°C</a> |
+                <a href="#" id="fahrenheit">°F
+                </a></span>
+            </h1>
+          </div>
+          <h3 class="weather-description" id="weather-description">Sunny</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-side">
+      <div class="info-container">
+        <div class="minimumTemp">
+          <span class="title"> MIN. TEMP </span>
+          <span class="value" id="minimum-temp">
+            12
+          </span>
+
+        </div>
+        <div class="humidity">
+          <span class="title"> HUMIDITY </span>
+          <span class="value" id="humidity-unit">
+            34 <span> % </span>
+          </span>
+
+        </div>
+        <div class="wind">
+          <span class="title"> WIND </span>
+          <span class="value" id="wind-unit">
+            0 <span> km/h </span>
+          </span>
+
+        </div>
+      </div>
+      <div class="week-container">
+        <ul class="week">
+          <li>
+            <i class="day-icon">
+              <i class="far fa-sun"></i>
+            </i>
+            <div class="day-name">
+              Sun
+            </div>
+            <div class="day-temp">
+              14°C
+            </div>
+
+          </li>
+
+          <li>
+            <i class="day-icon">
+              <i class="far fa-sun"></i>
+            </i>
+            <div class="day-name">
+              Mon
+            </div>
+            <div class="day-temp">
+              16°C
+            </div>
+          </li>
+          <li>
+            <i class="day-icon">
+              <i class="far fa-sun"></i>
+            </i>
+            <div class="day-name">
+              Tue
+            </div>
+            <div class="day-temp">
+              19°C
+            </div>
+          </li>
+          <li>
+            <i class="day-icon">
+              <i class="fas fa-cloud-sun"></i>
+              <div class="day-name">
+                Wed
+              </div>
+              <div class="day-temp">
+                22°C
+              </div>
+          </li>
+        </ul>
+      </div>
+      <container id="location-container">
+        <ul class="location-buttons">
+          <li>
+            <form id="change-location">
+              <input type="text" placeholder="Type a city..." autocomplete="off" autofocus="on" id="city-input">
+            </form>
+          </li>
+          <li>
+            <button type="text" placeholder="Current location" id="current-location-btn">
+              <img
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAACSElEQVRIicWWP2sUQRyG34nxxAtYaTAeXq4waBAV04m5wk7ENtpERLQwiKKgYiWkyAfQIqLFofgBJFYX/AqSaKFWYuIfIiYWCSbeyZ2Pxc7BuM7u7borvjBw/Obd95mZ3ZsZ6T/JpDEDmyQdt61iywuS6pLqxph2vsMLoFXgNdF6BYzmDT0FNGOgHTWBsbygh4DvCaAdbQAH8gA/SwHtaDYrtBIRPA3st+2ep/8nUM4CPusJfeLxzXh8Z+Kye7qwd3pqTz21GU9tVxbwiqc2kBDS6JIdLWDUs4RfgD2OZwhY9viOxWXH7lxAQdInSdtDXesKdisp2MX6Qv0rkkrGmB9JJhgFvxvxZcfpzl8DHfAw0EoBbQHDmcEW/jAFuJYL1IIrBFthN60Dg7mBLfxWAvDNXKEW3AvMxUDngN7cwRY+BKx6oN/I8YPqAUbsEk849XEPeNzpn7DPjADJbzhAEbgCLDrBLaDqeGpOX82pV/n9r7cAXAa2doMeBT6GZtMG3gBTocE9t63o1Kestx3K+AAciYKWgTXHPA9cBPoj/CWgFNHXb5f8hZO3Cuz2ma85puup3k+EAAPccHKv+kwnHcNbYAzYnAFaAE4D75zcE1Gjexx6N0vAfYKbyN4Es9sHnAMeAJ9DWY9cvwk/LOmSpNuSdnjym5KWJH1VcND3SCooODYH7O+wliVNSpo2xhA3eAF9wAVgFmiQXg2gDpwHwmf1nzOOGMQWSYclHZQ0KKksqShpm7WsSdqQ9F7SoqSXkuYzXQL+pX4BZSKNh0/Ef64AAAAASUVORK5CYII=">
+            </button>
+          </li>
+        </ul>
+      </container>
+    </div>
+  </div>
+
+
+  <script src="src/index.js"></script>
+</body>
+
+</html>
