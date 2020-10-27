@@ -24,19 +24,22 @@ currentLocationButton.addEventListener("click", getMyLocation);
 
 function displayWeather(response) {
   
-  let iconElement = document.querySelector("weather-icon");
+  let iconElement = document.querySelector("#icon");
 
    document.querySelector("#current-temp").innerHTML = `${Math.round(response.data.main.temp)}°`;
    document.querySelector("#city-name").innerHTML = response.data.name;
    document.querySelector("#country-code").innerHTML = response.data.sys.country;
    document.querySelector("#wind-unit").innerHTML =  `${Math.round(response.data.wind.speed)} km/h`;
    document.querySelector("#humidity-unit").innerHTML = `${response.data.main.humidity} %`;
-   document.querySelector("#weather-description").innerHTML = response.data.weather[0].main;
+   document.querySelector("#weather-description").innerHTML = response.data.weather[0].description;
   document.querySelector("#minimum-temp").innerHTML = `${Math.round(response.data.main.temp_min)}°C`;
   iconElement.setAttribute(
     "src", 
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
-  
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+  iconElement.setAttribute("alt", response.data.weather[0].description);
   console.log(response.data);
 }
 

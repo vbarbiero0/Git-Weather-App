@@ -50,8 +50,8 @@
   margin-left: 5px;
 }
 
-.location-img {
-  size: 60%;
+i {
+  size: 50%;
 }
 
 .location:hover {
@@ -63,9 +63,7 @@
   bottom: 30px;
   margin-left: 30px;
 }
-.weather-icon {
-  width: 110px;
-}
+
 .weather-temp {
   font-weight: 700;
   font-size: 70px;
@@ -79,6 +77,10 @@
 .weather-description {
   font-size: 135%;
 }
+
+h3::first-letter {
+  text-transform: capitalize;
+  }
 
 .info-side {
   position: relative;
@@ -171,7 +173,6 @@ button {
   outline: none !important;
   cursor: pointer;
 }
-
 
 
 
