@@ -50,8 +50,8 @@
   margin-left: 5px;
 }
 
-i {
-  size: 50%;
+h1 {
+  margin-top: 0;
 }
 
 .location:hover {
@@ -62,11 +62,13 @@ i {
   position: absolute;
   bottom: 30px;
   margin-left: 30px;
+
 }
 
 .weather-temp {
   font-weight: 700;
   font-size: 70px;
+  
 }
 .alternate {
   color: white;
