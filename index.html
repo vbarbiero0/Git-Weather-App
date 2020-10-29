@@ -6,7 +6,6 @@
   <meta charset="UTF-8" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
-    <link href="css/custom.css" rel="stylesheet">
   <link href="src/styles.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://kit.fontawesome.com/df7b7e2de4.js" crossorigin="anonymous"></script>
@@ -42,17 +41,9 @@
 
         
         <div class="weather-container">
-          <div class="list-unstyled" id="weather-icon">
-            <img src="" 
-              alt="Clear" 
-              id="icon"
-              width="90px"
-              float="left"
-
-            />
-          </div>
-
-          <div>
+            <div class="weather-icon" id="weather-icon">
+              <img src="" alt="Clear" id="icon" width="80px" float="left" />
+            </div>
             <h1 class="weather-temp">
               <span id="current-temp">
                 14
@@ -61,11 +52,12 @@
                 <a href="#" id="fahrenheit">°F
                 </a></span>
             </h1>
+          
+              <h3 class="weather-description" id="weather-description"><firstletter>S</firstletter>unny
+            </h3>
           </div>
-          <h3 class="weather-description" id="weather-description"><firstletter>S</firstletter>unny</h3>
         </div>
       </div>
-    </div>
 
     <div class="info-side">
       <div class="info-container">
@@ -92,8 +84,9 @@
         </div>
       </div>
       <div class="week-container">
-        <ul class="week">
-          <li>
+        <div class="row" id="forecast" >
+          <div class="col-3" id="col-3" >
+          
             <img class="day-icon" src="http://openweathermap.org/img/wn/10d@2x.png" alt="clear" id="day-icon" />
             <div class="day-name">
               Sun
@@ -101,9 +94,9 @@
             <div class="day-temp">
               14°C
             </div>
-          </li>
+          </div>
 
-          <li>
+          <div class="col-3">
             <img class="day-icon" src="http://openweathermap.org/img/wn/10d@2x.png" alt="clear" id="day-icon" />
             <div class="day-name">
               Mon
@@ -111,9 +104,9 @@
             <div class="day-temp">
               16°C
             </div>
-          </li>
+          </div>
           
-          <li>
+          <div class="col-3">
             <img class="day-icon" src="http://openweathermap.org/img/wn/10d@2x.png" alt="clear" id="day-icon" />
             <div class="day-name">
               Tue
@@ -121,9 +114,9 @@
             <div class="day-temp">
               19°C
             </div>
-          </li>
+          </div>
           
-          <li>
+          <div class="col-3">
             <img class="day-icon" src="http://openweathermap.org/img/wn/10d@2x.png" alt="clear" id="day-icon" />
               <div class="day-name">
                 Wed
@@ -131,30 +124,26 @@
               <div class="day-temp">
                 22°C
               </div>
-          </li>
-        </ul>
-      
-      </div>
-      <container id="location-container">
-        <div class="row">
-          <div class="col-8">
-           <div class="location-buttons">
-             <form id="change-location">
-               <input type="text" placeholder="Type a city..." autocomplete="off" autofocus="on" id="city-input">
-             </form>
-            </div>
-          </div>
             
-            <span class="col-4">
-              <button type="text" placeholder="Current location" id="current-location-btn">
-                <img
-                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAACSElEQVRIicWWP2sUQRyG34nxxAtYaTAeXq4waBAV04m5wk7ENtpERLQwiKKgYiWkyAfQIqLFofgBJFYX/AqSaKFWYuIfIiYWCSbeyZ2Pxc7BuM7u7borvjBw/Obd95mZ3ZsZ6T/JpDEDmyQdt61iywuS6pLqxph2vsMLoFXgNdF6BYzmDT0FNGOgHTWBsbygh4DvCaAdbQAH8gA/SwHtaDYrtBIRPA3st+2ep/8nUM4CPusJfeLxzXh8Z+Kye7qwd3pqTz21GU9tVxbwiqc2kBDS6JIdLWDUs4RfgD2OZwhY9viOxWXH7lxAQdInSdtDXesKdisp2MX6Qv0rkkrGmB9JJhgFvxvxZcfpzl8DHfAw0EoBbQHDmcEW/jAFuJYL1IIrBFthN60Dg7mBLfxWAvDNXKEW3AvMxUDngN7cwRY+BKx6oN/I8YPqAUbsEk849XEPeNzpn7DPjADJbzhAEbgCLDrBLaDqeGpOX82pV/n9r7cAXAa2doMeBT6GZtMG3gBTocE9t63o1Kestx3K+AAciYKWgTXHPA9cBPoj/CWgFNHXb5f8hZO3Cuz2ma85puup3k+EAAPccHKv+kwnHcNbYAzYnAFaAE4D75zcE1Gjexx6N0vAfYKbyN4Es9sHnAMeAJ9DWY9cvwk/LOmSpNuSdnjym5KWJH1VcND3SCooODYH7O+wliVNSpo2xhA3eAF9wAVgFmiQXg2gDpwHwmf1nzOOGMQWSYclHZQ0KKksqShpm7WsSdqQ9F7SoqSXkuYzXQL+pX4BZSKNh0/Ef64AAAAASUVORK5CYII="
-                id="current-location-icon"/>
-              </button>
-            </span>
-              
+          </div>
         </div>
-      </container>
+      </div>
+      <div class="row" id="search-location">
+        <div class="col-10" >
+          <form action="submit" id="change-location">
+            <input type="text" placeholder="Type a city..." autocomplete="off" autofocus="on" id="city-input"
+            >
+         </form> 
+        </div>
+        <div class="col-2" id="current-location-btn">
+        <button type="text" placeholder="Current location" id="current-location-btn">
+          <img
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAACSElEQVRIicWWP2sUQRyG34nxxAtYaTAeXq4waBAV04m5wk7ENtpERLQwiKKgYiWkyAfQIqLFofgBJFYX/AqSaKFWYuIfIiYWCSbeyZ2Pxc7BuM7u7borvjBw/Obd95mZ3ZsZ6T/JpDEDmyQdt61iywuS6pLqxph2vsMLoFXgNdF6BYzmDT0FNGOgHTWBsbygh4DvCaAdbQAH8gA/SwHtaDYrtBIRPA3st+2ep/8nUM4CPusJfeLxzXh8Z+Kye7qwd3pqTz21GU9tVxbwiqc2kBDS6JIdLWDUs4RfgD2OZwhY9viOxWXH7lxAQdInSdtDXesKdisp2MX6Qv0rkkrGmB9JJhgFvxvxZcfpzl8DHfAw0EoBbQHDmcEW/jAFuJYL1IIrBFthN60Dg7mBLfxWAvDNXKEW3AvMxUDngN7cwRY+BKx6oN/I8YPqAUbsEk849XEPeNzpn7DPjADJbzhAEbgCLDrBLaDqeGpOX82pV/n9r7cAXAa2doMeBT6GZtMG3gBTocE9t63o1Kestx3K+AAciYKWgTXHPA9cBPoj/CWgFNHXb5f8hZO3Cuz2ma85puup3k+EAAPccHKv+kwnHcNbYAzYnAFaAE4D75zcE1Gjexx6N0vAfYKbyN4Es9sHnAMeAJ9DWY9cvwk/LOmSpNuSdnjym5KWJH1VcND3SCooODYH7O+wliVNSpo2xhA3eAF9wAVgFmiQXg2gDpwHwmf1nzOOGMQWSYclHZQ0KKksqShpm7WsSdqQ9F7SoqSXkuYzXQL+pX4BZSKNh0/Ef64AAAAASUVORK5CYII="
+            id="current-location-icon" />
+        </button>
+        </div>
+      </div>
+      
     </div>
   </div>
 
