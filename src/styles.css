@@ -74,11 +74,15 @@ body {
   font-weight: 700;
   font-size: 80px;
   line-height: 20px;
+  
 }
-.alternate {
-  color: white;
+.weather-temp .alternate {
   font-weight: 700;
   font-size: small;
+}
+
+a {
+  color: white;
 }
 
 .weather-description {
@@ -213,5 +217,17 @@ button:hover {
   -webkit-transform: scale(1.03);
   -ms-transform: scale(1.03);
   transform: scale(1.05);
-  
+}
+
+.active {
+  cursor: default;
+  color: #0000EE
+}
+
+.weather-container .active:hover {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
 }

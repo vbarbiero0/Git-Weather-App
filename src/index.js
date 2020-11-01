@@ -90,6 +90,8 @@ function displayWeather(response) {
   function displayFahrenheitTemperature(event) {
     event.preventDefault();
   let temperatureElement = document.querySelector("#current-temp");
+  metricCelsius.classList.remove("active");
+  metricFahrenheit.classList.add("active");
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
   }
@@ -97,8 +99,14 @@ function displayWeather(response) {
   function displayCelsiusTemperature(event) {
     event.preventDefault();
     let temperatureElement = document.querySelector("#current-temp");
+    metricCelsius.classList.add("active");
+    metricFahrenheit.classList.remove("active");
     temperatureElement.innerHTML = Math.round(celsiusTemperature)
   }
+
+
+
+
 
 
   let celsiusTemperature = null;
