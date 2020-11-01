@@ -150,7 +150,7 @@ h3::first-letter {
 }
 
 form {
-  margin-left: 25px;
+  margin-left: 15px;
   
 }
 
@@ -186,7 +186,6 @@ button {
   border: none;
   outline: none !important;
   cursor: pointer;
-  
   }
 
 
