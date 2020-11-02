@@ -114,8 +114,8 @@ h3::first-letter {
 }
 
 .row {
-  margin-right: 5px;
-  margin-left: 10px;
+  margin-right: 10px;
+  margin-left: 15px;
   
 }
 .col-3 {
@@ -131,21 +131,22 @@ h3::first-letter {
 .day-icon {
   display: block;
   margin: 0 auto;
-  width: 50%;
+  width: 55px;
   background: none;
   background: transparent;
 }
 
-.day-name {
+.day-time {
   text-align: center;
-
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .day-temp {
   text-align: center;
   font-size: 15px;
-  line-height: 30px;
-  font-weight: 800;
+  line-height: 6px;
+  font-weight: 600;
 
 }
 
@@ -200,12 +201,6 @@ button {
   font-family: "Montserrat", sans-serif;
 }
 
-.forecast .row :hover {
-  transform: scale(1.1);
-  background: white;
-  color: black;
-  box-shadow: 0 0 40px -5px rgba(0, 0, 0, 0.2);
-}
 
 input:hover {
   -webkit-transform: scale(1.03);

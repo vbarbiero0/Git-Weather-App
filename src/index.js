@@ -9,7 +9,7 @@ function formatDate(date) {
     "Saturday",
   ];
 
-  let h2 = document.querySelector("#day-name");
+  let h2 = document.querySelector("#day-time");
   h2.innerHTML = days[date.getDay()];
 
   let months = [
@@ -34,10 +34,50 @@ function formatDate(date) {
   fullDay.innerHTML = `${currentDate} ${months[date.getMonth()]} ${year}`;
 }
 
+
+function formatHours(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+  return `${hours}:${minutes}`;
+}
+
+
+function displayForecast(response) {
+let forecastElement = document.querySelector("#forecast");
+forecastElement.innerHTML = null;
+let forecast = null;
+
+  for (let index = 0; index < 4; index++) {
+    forecast = response.data.list[index];
+    forecastElement.innerHTML += `
+        <div class="col-3" id="col-3" >
+          <div class="day-time">
+              ${formatHours(forecast.dt * 1000)}
+          </div>
+        <img class="day-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" />
+          <div class="day-temp">
+              <strong>${Math.round(forecast.main.temp)}°C</strong>
+          </div>
+    `;
+
+  }
+}
+
 function search(city) {
    let apiKey = "45e0d74a1bc7be61b894ed215a9def13";
    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
    axios.get(apiUrl).then(displayWeather);
+  
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast)
+  
    console.log(apiUrl);
 }   
 
@@ -106,8 +146,8 @@ function displayWeather(response) {
 
 
 
-
-
+let forecast = `https://api.openweathermap.org/data/2.5/forecast?id=524901&appid=45e0d74a1bc7be61b894ed215a9def13&units=metric`;
+console.log(forecast);
 
   let celsiusTemperature = null;
   
