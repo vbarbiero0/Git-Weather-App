@@ -22,7 +22,7 @@
 
       <div class="weather-side-container" id="weather-side-container">
         <div class="date-container" id="date-container">
-          <span class="date" id="date">
+          <span class="date" >
             <h2 class="date-dayname" id="day-time">Tuesday</h2>
             <div class="date-day" id="day">12 Sept 2020</div>
           </span>
@@ -30,10 +30,10 @@
           <h6 class="location">
             <i class="fas fa-map-marker-alt" id="location-img">
             </i>
-            <span class="cityName" id="city-name">
+            <span class="city" id="city">
               Montreal
             </span> ,
-            <span class="countryCode" id="country-code">
+            <span class="country" id="country-input">
               CA
             </span>
           </h6>
@@ -41,18 +41,18 @@
 
         
         <div class="weather-container">
-            <div class="weather-icon" id="weather-icon">
-              <img src="" alt="Clear" id="icon" width="80px" float="left" />
+            <div class="weather-icon">
+              <img src="" alt="clear" id="icon" width="100px" float="left" />
             </div>
             <h1 class="weather-temp">
-              <span id="current-temp"> 
+              <span id="temperature">
               </span>
-              <span class="alternate" id="alternate"><a href="#" id="celsius" class="active">°C</a> |
-                <a href="#" id="fahrenheit">°F
+              <span class="alternate" id="alternate"><a href="#" id="celsiusLink" class="active">°C</a> |
+                <a href="#" id="fahrenheitLink">°F
                 </a></span>
             </h1>
           
-              <h3 class="weather-description" id="weather-description"><firstletter>S</firstletter>unny
+              <h3 class="weather-description" id="description"><firstletter>S</firstletter>unny
             </h3>
           </div>
         </div>
@@ -61,54 +61,63 @@
     <div class="info-side">
       
       <div class="info-container">
-        <div class="minimumTemp">
+        <div>
           <span class="title"> MIN. TEMP </span>
-          <span class="value" id="minimum-temp">
+          <span class="value" id="minimum">
             12
-          </span>
+          <span> °C </span>
+          </div>
 
-        </div>
-        <div class="humidity">
+        <div>
           <span class="title"> HUMIDITY </span>
-          <span class="value" id="humidity-unit">
-            34 <span> % </span>
-          </span>
+          <span class="value" id="humidity">
+            34  
+          <span> % </span>
+          </div>
 
-        </div>
-        <div class="wind">
+        <div>
           <span class="title"> WIND </span>
-          <span class="value" id="wind-unit">
-            0 <span> km/h </span>
+          <span class="value" id="wind">
+            0 
+            </span>
+            
           </span>
-
         </div>
       </div>
       
       <div class="week-container">
         <div class="row" id="forecast" >
           <div class="col-3" id="col-3" >
-            <div class="day-time">
+            <div class="day-time" id="day-time">
               12:00
             </div>
             <img class="day-icon" src="http://openweathermap.org/img/wn/10d@2x.png" alt="clear" id="day-icon" 
             />
-            <div class="active" id="day-temp">
+            <div id="day-temp">
               14°C
             </div>
-          
-            
           </div>
         </div>
       </div>
+            
+            
       <div class="row" id="search-location">
         <div class="col-10" >
-          <form action="submit" id="change-location">
-            <input type="text" placeholder="Type a city..." autocomplete="off" autofocus="on" id="city-input"
+          <form id="search-form" 
+                class="mb-3">
+            <input 
+             type="search" 
+             placeholder="Type a city..." 
+             autocomplete="off" 
+             id="city-input"
             >
          </form> 
         </div>
         <div class="col-2" id="current-location-btn">
-        <button type="text" placeholder="Current location" id="current-location-btn">
+        <button type="submit" 
+        value="search" 
+        
+        id="current-location-btn">
           <img
             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAACSElEQVRIicWWP2sUQRyG34nxxAtYaTAeXq4waBAV04m5wk7ENtpERLQwiKKgYiWkyAfQIqLFofgBJFYX/AqSaKFWYuIfIiYWCSbeyZ2Pxc7BuM7u7borvjBw/Obd95mZ3ZsZ6T/JpDEDmyQdt61iywuS6pLqxph2vsMLoFXgNdF6BYzmDT0FNGOgHTWBsbygh4DvCaAdbQAH8gA/SwHtaDYrtBIRPA3st+2ep/8nUM4CPusJfeLxzXh8Z+Kye7qwd3pqTz21GU9tVxbwiqc2kBDS6JIdLWDUs4RfgD2OZwhY9viOxWXH7lxAQdInSdtDXesKdisp2MX6Qv0rkkrGmB9JJhgFvxvxZcfpzl8DHfAw0EoBbQHDmcEW/jAFuJYL1IIrBFthN60Dg7mBLfxWAvDNXKEW3AvMxUDngN7cwRY+BKx6oN/I8YPqAUbsEk849XEPeNzpn7DPjADJbzhAEbgCLDrBLaDqeGpOX82pV/n9r7cAXAa2doMeBT6GZtMG3gBTocE9t63o1Kestx3K+AAciYKWgTXHPA9cBPoj/CWgFNHXb5f8hZO3Cuz2ma85puup3k+EAAPccHKv+kwnHcNbYAzYnAFaAE4D75zcE1Gjexx6N0vAfYKbyN4Es9sHnAMeAJ9DWY9cvwk/LOmSpNuSdnjym5KWJH1VcND3SCooODYH7O+wliVNSpo2xhA3eAF9wAVgFmiQXg2gDpwHwmf1nzOOGMQWSYclHZQ0KKksqShpm7WsSdqQ9F7SoqSXkuYzXQL+pX4BZSKNh0/Ef64AAAAASUVORK5CYII="
             id="current-location-icon" />

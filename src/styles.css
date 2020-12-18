@@ -105,6 +105,7 @@ h3::first-letter {
   line-height: 1.7em;
 }
 
+
 .title {
   font-weight: 750;
 }
@@ -118,8 +119,9 @@ h3::first-letter {
   margin-left: 15px;
   
 }
+
 .col-3 {
-  display: block;
+  display: inline;
   margin: 0 auto;
   padding: 0;
   border-radius: 10px;
@@ -147,7 +149,6 @@ h3::first-letter {
   font-size: 15px;
   line-height: 6px;
   font-weight: 600;
-
 }
 
 .city-input {
